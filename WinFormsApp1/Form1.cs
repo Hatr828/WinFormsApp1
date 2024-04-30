@@ -1,30 +1,21 @@
+﻿using System.Linq.Expressions;
+
 namespace WinFormsApp1
 {
     public partial class Form1 : Form
     {
-        private int level;
-        private int answer;
-        private int correctAnswers = 0;
-        private int incorrectAnswers = 0;
-        private int quastions = 1;
+        int[] price = { 4, 5, 6, 7 };
+        int moneyEarn = 0;
         public Form1()
         {
             InitializeComponent();
-            Initialize();
+            Intialize();
         }
 
-        private void Initialize()
+        public void Intialize()
         {
-            Random rd = new Random();
-            int temp1 = rd.Next(0, 20);
-            int temp2 = rd.Next(0, 20);
-
-            panel1.Visible = true;
-            StartButton.Visible = true;
-            button1.Visible = false;
-            textBox3.Visible = false;
-            answer = temp1 * temp2;
-            textBox1.Text = temp1 + " * " + temp2;
+            textBox1.Text = price[0] + " грн";
+            timer1.Enabled = true;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -32,58 +23,187 @@ namespace WinFormsApp1
 
         }
 
-        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        private void groupBox2_Enter(object sender, EventArgs e)
         {
 
         }
 
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        private void groupBox3_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            textBox1.Text = price[comboBox1.SelectedIndex] + " грн";
+            try
+            {
+                textBox3.Text = (Convert.ToInt32(textBox2.Text) * price[comboBox1.SelectedIndex]).ToString();
+                label1.Text = (Convert.ToInt32(textBox2.Text) * price[comboBox1.SelectedIndex]).ToString();
+            }
+            catch (System.FormatException)
+            {
+                textBox3.Text = "0";
+                label1.Text = "0";
+            }
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void textBox2_TextChanged_1(object sender, EventArgs e)
+        {
+            try
+            {
+                textBox3.Text = (Convert.ToInt32(textBox2.Text) * price[comboBox1.SelectedIndex]).ToString();
+                label1.Text = (Convert.ToInt32(textBox2.Text) * price[comboBox1.SelectedIndex]).ToString();
+            }
+            catch (System.FormatException)
+            {
+                textBox3.Text = "0";
+                label1.Text = "0";
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            textBox111.ReadOnly = !checkBox1.Checked;
+            groupBox2_Ressit();
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            textBox112.ReadOnly = !checkBox1.Checked;
+            groupBox2_Ressit();
+        }
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            textBox113.ReadOnly = !checkBox1.Checked;
+            groupBox2_Ressit();
+        }
+
+        private void checkBox4_CheckedChanged(object sender, EventArgs e)
+        {
+            textBox114.ReadOnly = !checkBox1.Checked;
+            groupBox2_Ressit();
+        }
+
+        private void groupBox2_Ressit()
+        {
+            int sum = 0;
+            try
+            {
+                if (checkBox1.Checked)
+                {
+                    sum += Convert.ToInt32(textBox11.Text) * Convert.ToInt32(textBox111.Text);
+                }
+                if (checkBox2.Checked)
+                {
+                    sum += Convert.ToInt32(textBox12.Text) * Convert.ToInt32(textBox112.Text);
+                }
+                if (checkBox3.Checked)
+                {
+                    sum += Convert.ToInt32(textBox13.Text) * Convert.ToInt32(textBox113.Text);
+                }
+                if (checkBox4.Checked)
+                {
+                    sum += Convert.ToInt32(textBox11.Text) * Convert.ToInt32(textBox114.Text);
+                }
+
+                label6.Text = sum.ToString();
+
+            }
+            catch (System.FormatException)
+            {
+                label6.Text = "0";
+            }
+        }
+
+        private void textBox111_TextChanged(object sender, EventArgs e)
+        {
+            groupBox2_Ressit();
+        }
+
+        private void textBox112_TextChanged(object sender, EventArgs e)
+        {
+            groupBox2_Ressit();
+        }
+
+        private void textBox113_TextChanged(object sender, EventArgs e)
+        {
+            groupBox2_Ressit();
+        }
+
+        private void textBox114_TextChanged(object sender, EventArgs e)
+        {
+            groupBox2_Ressit();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            timer_Ressit();
+        }
+
+        private void timer_Ressit()
+        {
+            try
+            {
+                label10.Text = (Convert.ToInt32(label1.Text) + Convert.ToInt32(label6.Text)).ToString();
+            }
+            catch (System.FormatException)
+            {
+                label10.Text = "0";
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            foreach (var Panel in Controls.OfType<Panel>())
+            timer2.Enabled = true;
+            if(temp2)
             {
-                this.Controls.Remove(Panel);
+                moneyEarn += Convert.ToInt32(label10.Text);
+                temp2 = false;
             }
-            this.Controls.Remove((Control)sender);
-            button1.Visible = true;
-            textBox1.Visible = true;
-            textBox2.Visible = true;
-            level = radioButton1.Checked ? 1 : radioButton2.Checked ? 2 : 3;
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        bool temp2 = true;
+        bool temp;
+        private void timer2_Tick(object sender, EventArgs e)
         {
-            if (quastions < 10)
+            if (temp)
             {
-                Random rd = new Random();
-                int temp1 = rd.Next(0, 20);
-                int temp2 = rd.Next(0, 20);
-
-                if (string.Equals(answer.ToString(), textBox2.Text))
-                {
-                    correctAnswers += 1;
-                }
-                else
-                {
-                    incorrectAnswers += 1;
-                }
-                quastions += 1;
-                answer = temp1 * temp2 * level * level;
-                textBox2.Text = "";
-                textBox1.Text = (temp1 * level) + " * " + (temp2 * level);
+                timer2.Enabled = false;
+                temp2 = true;
+                Application.Restart();
             }
             else
             {
-                textBox1.Visible = false;
-                textBox2.Visible = false;
-                button1.Visible = false;
-                textBox3.Visible = true;
-                textBox3.Text = "Correct answers: " + correctAnswers + "\n\n Incorrect answers: " + incorrectAnswers;
+                DialogResult result = MessageBox.Show("Вы действительно хотите очистить?", "Подтверждение", MessageBoxButtons.YesNo);
+
+                if (result == DialogResult.Yes)
+                {
+                    timer2.Enabled = false;
+                    temp2 = true;
+                    Application.Restart();
+                }
+                else
+                {
+                    temp = true;
+                }
             }
         }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            MessageBox.Show($"денег заработано: {moneyEarn}", "Подтверждение", MessageBoxButtons.YesNo);
+        }
     }
+
 }
