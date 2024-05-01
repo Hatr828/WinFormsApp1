@@ -166,7 +166,7 @@ namespace WinFormsApp1
         private void button1_Click(object sender, EventArgs e)
         {
             timer2.Enabled = true;
-            if(temp2)
+            if (temp2)
             {
                 moneyEarn += Convert.ToInt32(label10.Text);
                 temp2 = false;

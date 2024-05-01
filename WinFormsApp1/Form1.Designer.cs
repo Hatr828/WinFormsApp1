@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             groupBox1 = new GroupBox();
             textBox2 = new TextBox();
             label5 = new Label();
@@ -63,11 +64,13 @@
             label9 = new Label();
             timer1 = new System.Windows.Forms.Timer(components);
             timer2 = new System.Windows.Forms.Timer(components);
+            pictureBox1 = new PictureBox();
             groupBox1.SuspendLayout();
             groupBox4.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox5.SuspendLayout();
             groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // groupBox1
@@ -367,6 +370,7 @@
             // 
             // groupBox3
             // 
+            groupBox3.Controls.Add(pictureBox1);
             groupBox3.Controls.Add(button1);
             groupBox3.Controls.Add(label10);
             groupBox3.Controls.Add(label9);
@@ -381,7 +385,7 @@
             // button1
             // 
             button1.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.Location = new Point(6, 41);
+            button1.Location = new Point(95, 53);
             button1.Name = "button1";
             button1.Size = new Size(131, 121);
             button1.TabIndex = 4;
@@ -393,7 +397,7 @@
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 60F, FontStyle.Regular, GraphicsUnit.Point);
-            label10.Location = new Point(143, 29);
+            label10.Location = new Point(232, 41);
             label10.Name = "label10";
             label10.Size = new Size(111, 133);
             label10.TabIndex = 2;
@@ -417,6 +421,16 @@
             timer2.Interval = 10000;
             timer2.Tick += timer2_Tick;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(0, 53);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(89, 121);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 5;
+            pictureBox1.TabStop = false;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -439,6 +453,7 @@
             groupBox5.PerformLayout();
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -478,5 +493,6 @@
         private TextBox textBox2;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer timer2;
+        private PictureBox pictureBox1;
     }
 }
