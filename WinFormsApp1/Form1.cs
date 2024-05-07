@@ -13,78 +13,58 @@ namespace WinFormsApp1
     public partial class Form1 : Form
     {
 
-        private int gameNumber = new Random().Next(1, 100);
-        private int tries = 10;
+        private List<Employee> employees = new List<Employee>();
 
         public Form1()
         {
             InitializeComponent();
+            InitializeDataGridView();
         }
 
-        private void rulesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void InitializeDataGridView()
         {
-            textBox1.Visible = true;
-            textBox2.Visible = false;
-            textBox3.Visible = false;
-            textBox4.Visible = false;
-            textBox5.Visible = false;
-            textBox6.Visible = false;
-            button1.Visible = false;
+            employees.Add(new Employee());
+
+            dataGridView1.DataSource = employees;
+            dataGridView1.Columns.Remove("Id");
         }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        private void buttonAdd_Click(object sender, EventArgs e)
         {
-            Application.Exit();
-        }
 
-        private void newGameToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            gameNumber = new Random().Next(1, 100);
-            tries = 10;
-            textBox6.Text = $"Кол попыток: {tries}";
-            textBox5.Text = $"";
-
-            textBox1.Visible = false;
-            textBox2.Visible = true;
-            textBox3.Visible = true;
-            textBox4.Visible = true;
-            textBox5.Visible = true;
-            textBox6.Visible = true;
-            button1.Visible = true;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (tries > 1)
+            Employee employee = new Employee()
             {
-                try
-                {
-                    if (Convert.ToInt32(textBox4.Text) == gameNumber)
-                    {
-                        MessageBox.Show("Вы выйграли");
-                        Application.Exit();
-                    }
-                    else
-                    {
-                        tries -= 1;
-                        textBox6.Text = $"Кол попыток: {tries}";
-                        textBox5.Text = $"Не правильно";
-                        textBox4.Text = "";
-                    }
-                }
-                catch (FormatException)
-                {
-                    tries -= 1;
-                    textBox6.Text = $"Кол попыток: {tries}";
-                    textBox5.Text = $"Не правильно";
-                    textBox4.Text = "";
-                }
+                Name = textBox1.Text,
+                Position = textBox2.Text,
+                Department = textBox3.Text
+
+            };
+            dataGridView1.AutoGenerateColumns = false;
+            employees.Add(employee);
+            dataGridView1.Refresh();
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                Employee selectedEmployee = dataGridView1.SelectedRows[0].DataBoundItem as Employee;
+
+                employees.Remove(selectedEmployee);
+                dataGridView1.Refresh();
             }
             else
             {
-                MessageBox.Show("Вы проиграли");
-                Application.Exit();
+                MessageBox.Show("Please select an employee to delete.");
             }
         }
+    }
+
+    public class Employee
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Position { get; set; }
+        public string Department { get; set; }
     }
 }

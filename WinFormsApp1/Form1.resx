@@ -117,27 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <data name="textBox1.Text" xml:space="preserve">
-    <value>Начало игры:
-
-Компьютер загадывает случайное число из определенного диапазона. Например, от 1 до 100.
-
-Цель игры:
-
-Игроку нужно угадать загаданное компьютером число за минимальное количество попыток.
-
-Ход игры:
-
-Игрок делает свой первый предположительный ход, указывая число.
-Компьютер сообщает, если предложенное число меньше или больше загаданного числа.
-Игрок продолжает делать предположения, пока не угадает число.
-
-Условия победы и поражения:
-
-Игрок выигрывает, если угадывает число за минимальное количество попыток.
-Игрок проигрывает, если исчерпывает все попытки и не угадывает число.</value>
-  </data>
 </root>
