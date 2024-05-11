@@ -12,59 +12,35 @@ namespace WinFormsApp1
 {
     public partial class Form1 : Form
     {
-
-        private List<Employee> employees = new List<Employee>();
+        Point points;
 
         public Form1()
         {
             InitializeComponent();
-            InitializeDataGridView();
+
         }
 
-        private void InitializeDataGridView()
+        private void Form1_MouseClick(object sender, MouseEventArgs e)
         {
-            employees.Add(new Employee());
-
-            dataGridView1.DataSource = employees;
-            dataGridView1.Columns.Remove("Id");
+            points = new Point(e.X,e.Y);
+            Invalidate();
         }
 
-        private void buttonAdd_Click(object sender, EventArgs e)
+        private void Form1_Paint(object sender, PaintEventArgs e)
         {
-
-            Employee employee = new Employee()
+            Graphics g = this.CreateGraphics();
+            Random rd = new Random();
+            var brushes = new Brush[]
             {
-                Name = textBox1.Text,
-                Position = textBox2.Text,
-                Department = textBox3.Text
-
+                Brushes.AliceBlue,
+                Brushes.Aqua,
+                Brushes.Beige,
+                Brushes.BurlyWood,
+                Brushes.DarkOrchid,
+                Brushes.LightGreen
             };
-            dataGridView1.AutoGenerateColumns = false;
-            employees.Add(employee);
-            dataGridView1.Refresh();
+            int circleSize = rd.Next(10, 70);
+                g.FillEllipse(brushes[rd.Next(0, brushes.Length)], points.X, points.Y, circleSize, circleSize);
         }
-
-        private void buttonDelete_Click(object sender, EventArgs e)
-        {
-            if (dataGridView1.SelectedRows.Count > 0)
-            {
-                Employee selectedEmployee = dataGridView1.SelectedRows[0].DataBoundItem as Employee;
-
-                employees.Remove(selectedEmployee);
-                dataGridView1.Refresh();
-            }
-            else
-            {
-                MessageBox.Show("Please select an employee to delete.");
-            }
-        }
-    }
-
-    public class Employee
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Position { get; set; }
-        public string Department { get; set; }
     }
 }
