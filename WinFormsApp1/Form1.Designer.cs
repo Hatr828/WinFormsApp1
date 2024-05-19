@@ -28,75 +28,49 @@
         /// </summary>
         private void InitializeComponent()
         {
-            menuStrip1 = new MenuStrip();
-            newGameToolStripMenuItem = new ToolStripMenuItem();
-            lbFildLoadToolStripMenuItem = new ToolStripMenuItem();
-            exitToolStripMenuItem = new ToolStripMenuItem();
-            dateTimePicker1 = new DateTimePicker();
-            menuStrip1.SuspendLayout();
+            components = new System.ComponentModel.Container();
+            hScrollBar1 = new HScrollBar();
+            button1 = new Button();
+            timer1 = new System.Windows.Forms.Timer(components);
             SuspendLayout();
             // 
-            // menuStrip1
+            // hScrollBar1
             // 
-            menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { newGameToolStripMenuItem, lbFildLoadToolStripMenuItem, exitToolStripMenuItem });
-            menuStrip1.Location = new Point(0, 0);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(722, 28);
-            menuStrip1.TabIndex = 0;
-            menuStrip1.Text = "menuStrip1";
+            hScrollBar1.Location = new Point(233, 284);
+            hScrollBar1.Name = "hScrollBar1";
+            hScrollBar1.Size = new Size(276, 26);
+            hScrollBar1.TabIndex = 0;
             // 
-            // newGameToolStripMenuItem
+            // button1
             // 
-            newGameToolStripMenuItem.Name = "newGameToolStripMenuItem";
-            newGameToolStripMenuItem.Size = new Size(95, 24);
-            newGameToolStripMenuItem.Text = "New game";
-            newGameToolStripMenuItem.Click += newGameToolStripMenuItem_Click;
+            button1.Location = new Point(622, 248);
+            button1.Name = "button1";
+            button1.Size = new Size(94, 29);
+            button1.TabIndex = 1;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
             // 
-            // lbFildLoadToolStripMenuItem
+            // timer1
             // 
-            lbFildLoadToolStripMenuItem.Name = "lbFildLoadToolStripMenuItem";
-            lbFildLoadToolStripMenuItem.Size = new Size(99, 24);
-            lbFildLoadToolStripMenuItem.Text = "Lb fild load";
-            lbFildLoadToolStripMenuItem.Click += lbFildLoadToolStripMenuItem_Click;
-            // 
-            // exitToolStripMenuItem
-            // 
-            exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(47, 24);
-            exitToolStripMenuItem.Text = "Exit";
-            exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
-            // 
-            // dateTimePicker1
-            // 
-            dateTimePicker1.Location = new Point(292, 114);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(250, 27);
-            dateTimePicker1.TabIndex = 1;
+            timer1.Enabled = true;
+            timer1.Tick += timer1_Tick;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(722, 436);
-            Controls.Add(dateTimePicker1);
-            Controls.Add(menuStrip1);
+            Controls.Add(button1);
+            Controls.Add(hScrollBar1);
             Name = "Form1";
             Text = "Form1";
-            Paint += Form1_Paint;
-            KeyPress += Form1_KeyPress;
-            menuStrip1.ResumeLayout(false);
-            menuStrip1.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private MenuStrip menuStrip1;
-        private ToolStripMenuItem newGameToolStripMenuItem;
-        private ToolStripMenuItem lbFildLoadToolStripMenuItem;
-        private ToolStripMenuItem exitToolStripMenuItem;
-        private DateTimePicker dateTimePicker1;
+        private HScrollBar hScrollBar1;
+        private Button button1;
+        private System.Windows.Forms.Timer timer1;
     }
 }
