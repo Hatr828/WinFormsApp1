@@ -1,46 +1,92 @@
-﻿using MaterialSkin.Controls;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace WinFormsApp1
 {
-    public partial class Form1 : MaterialForm
+    public partial class Form1 : Form
     {
+        private readonly EmployeeViewModel _viewModel;
 
         public Form1()
         {
             InitializeComponent();
+            _viewModel = new EmployeeViewModel();
+            InitializeDataBindings();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void InitializeDataBindings()
         {
-            Task.Run(() => Button_Move());
+            textBox1.DataBindings.Add("Text", _viewModel, "Name", true, DataSourceUpdateMode.OnPropertyChanged);
+            textBox2.DataBindings.Add("Text", _viewModel, "Age", true, DataSourceUpdateMode.OnPropertyChanged);
+
+            dataGridView1.DataSource = _viewModel.Employees;
         }
 
-        private void Button_Move()
+        private void button1_Click(object sender, EventArgs e)
         {
-            if (button1.Location.X > 10 && this.Location.X > button1.Location.X)
-            {
-                this.Invoke(new EventHandler(delegate
-                {
-                    button1.Location = new Point(button1.Location.X + hScrollBar1.Value, button1.Location.Y);
-                }));
-            }
-            else
-            {
-                this.Invoke(new EventHandler(delegate
-                    {
-                        button1.Location = new Point(button1.Location.X - hScrollBar1.Value, button1.Location.Y);
-                    }));
-            }
+            _viewModel.AddEmployee();
         }
     }
 
+    public class EmployeeViewModel : INotifyPropertyChanged
+    {
+        private string _name;
+        private int _age;
+        private BindingList<Employee> _employees;
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        public EmployeeViewModel()
+        {
+            _employees = new BindingList<Employee>();
+        }
+
+        public string Name
+        {
+            get { return _name; }
+            set
+            {
+                _name = value;
+                OnPropertyChanged("Name");
+            }
+        }
+
+        public int Age
+        {
+            get { return _age; }
+            set
+            {
+                _age = value;
+                OnPropertyChanged("Age");
+            }
+        }
+
+        public BindingList<Employee> Employees
+        {
+            get { return _employees; }
+            set
+            {
+                _employees = value;
+                OnPropertyChanged("Employees");
+            }
+        }
+
+        public void AddEmployee()
+        {
+            Employees.Add(new Employee { Name = Name, Age = Age });
+        }
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
+
+    public class Employee
+    {
+        public string Name { get; set; }
+        public int Age { get; set; }
+    }
 }

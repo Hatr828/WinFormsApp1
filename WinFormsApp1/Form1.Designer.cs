@@ -28,49 +28,68 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            hScrollBar1 = new HScrollBar();
+            textBox1 = new TextBox();
+            textBox2 = new TextBox();
             button1 = new Button();
-            timer1 = new System.Windows.Forms.Timer(components);
+            dataGridView1 = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
-            // hScrollBar1
+            // textBox1
             // 
-            hScrollBar1.Location = new Point(233, 284);
-            hScrollBar1.Name = "hScrollBar1";
-            hScrollBar1.Size = new Size(276, 26);
-            hScrollBar1.TabIndex = 0;
+            textBox1.Location = new Point(12, 397);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(125, 27);
+            textBox1.TabIndex = 0;
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(143, 397);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(125, 27);
+            textBox2.TabIndex = 1;
             // 
             // button1
             // 
-            button1.Location = new Point(622, 248);
+            button1.Location = new Point(274, 396);
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
-            button1.TabIndex = 1;
-            button1.Text = "button1";
+            button1.TabIndex = 2;
+            button1.Text = "Add";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
-            // timer1
+            // dataGridView1
             // 
-            timer1.Enabled = true;
-            timer1.Tick += timer1_Tick;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(12, 12);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.RowTemplate.Height = 29;
+            dataGridView1.Size = new Size(698, 378);
+            dataGridView1.TabIndex = 3;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(722, 436);
+            Controls.Add(dataGridView1);
             Controls.Add(button1);
-            Controls.Add(hScrollBar1);
+            Controls.Add(textBox2);
+            Controls.Add(textBox1);
             Name = "Form1";
             Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private HScrollBar hScrollBar1;
+        private TextBox textBox1;
+        private TextBox textBox2;
         private Button button1;
-        private System.Windows.Forms.Timer timer1;
+        private DataGridView dataGridView1;
     }
 }
